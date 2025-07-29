@@ -21,8 +21,7 @@ public class GameManager : MonoBehaviour
     public void AsteroidDestroyed(Asteroid asteroid)
     {
         //SoundManager.instance.PlaySoundClip(damageSoundClip, transform, 1f);
-
-        Debug.Log("dead");
+        //Debug.Log("dead");
         this.Explode.transform.position = asteroid.transform.position;
         this.Explode.Play();
 

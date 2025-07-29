@@ -33,7 +33,7 @@ public class GameOverUI : MonoBehaviour
         if (gameManager != null)
         {
             FinalScoreTextBox.text = "Score: " + gameManager.score.ToString();
-            HighScoreTextBox.text = "HighScore: " + gameManager.score.ToString();
+            HighScoreTextBox.text = "HighScore: " + gameManager.GetHighScore();
         }
 
     }

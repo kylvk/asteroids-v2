@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private Bounds screenBounds;
 
 
+
     private void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
@@ -36,6 +37,7 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Shoot();
+            
         }
 
         if (rb2D.position.x > screenBounds.max.x + 0.5f)
