@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private AudioClip damageSoundClip;
+
     public Player player;
     public ParticleSystem Explode;
     public int lives = 3;
@@ -18,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public void AsteroidDestroyed(Asteroid asteroid)
     {
+        //SoundManager.instance.PlaySoundClip(damageSoundClip, transform, 1f);
+
         Debug.Log("dead");
         this.Explode.transform.position = asteroid.transform.position;
         this.Explode.Play();

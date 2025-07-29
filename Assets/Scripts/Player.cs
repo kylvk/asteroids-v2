@@ -13,11 +13,18 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb2D;
 
+    private Bounds screenBounds;
+
+
     private void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         //HealthCurrent = HealthMax;
 
+        screenBounds = new Bounds();
+        screenBounds.Encapsulate(Camera.main.ScreenToWorldPoint(Vector3.zero));
+        screenBounds.Encapsulate(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0f)));
+ 
     }
     private void Update()
     {
@@ -29,6 +36,23 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Shoot();
+        }
+
+        if (rb2D.position.x > screenBounds.max.x + 0.5f)
+        {
+            rb2D.position = new Vector2(screenBounds.min.x - 0.5f, rb2D.position.y);
+        }
+        else if (rb2D.position.x < screenBounds.min.x - 0.5f)
+        {
+            rb2D.position = new Vector2(screenBounds.max.x + 0.5f, rb2D.position.y);
+        }
+        else if (rb2D.position.y > screenBounds.max.y + 0.5f)
+        {
+            rb2D.position = new Vector2(rb2D.position.x, screenBounds.min.y - 0.5f);
+        }
+        else if (rb2D.position.y < screenBounds.min.y - 0.5f)
+        {
+            rb2D.position = new Vector2(rb2D.position.x, screenBounds.max.y + 0.5f);
         }
     }
     private void ApplyThrust(float amount)
