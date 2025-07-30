@@ -4,10 +4,13 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private AudioClip damageSoundClip;
+    [SerializeField] private AudioClip[] damageSoundClips;
+    [SerializeField] private AudioClip[] hurtSoundClips;
+    [SerializeField] private AudioClip deathSoundClip;
 
     public Player player;
     public ParticleSystem Explode;
+    public ScreenFlashUI flash;
     public int lives = 3;
     public int score = 0;
 
@@ -20,8 +23,9 @@ public class GameManager : MonoBehaviour
 
     public void AsteroidDestroyed(Asteroid asteroid)
     {
-        //SoundManager.instance.PlaySoundClip(damageSoundClip, transform, 1f);
-        //Debug.Log("dead");
+
+        SoundManager.instance.PlayRandomSoundClip(damageSoundClips, transform, 1f);
+
         this.Explode.transform.position = asteroid.transform.position;
         this.Explode.Play();
 
@@ -45,7 +49,10 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDied()
     {
-        
+        StartCoroutine(flash.FlashRoutine());
+
+        SoundManager.instance.PlayRandomSoundClip(hurtSoundClips, transform, 1f);
+
         this.Explode.transform.position = this.player.transform.position;
         this.Explode.Play();
 
@@ -76,6 +83,8 @@ public class GameManager : MonoBehaviour
     }
     private void GameOver()
     {
+        SoundManager.instance.PlaySoundClip(deathSoundClip, transform, 1f);
+
         GameOverPanel.SetActive(true);
        // this.lives = 3;
        // this.score = 0;

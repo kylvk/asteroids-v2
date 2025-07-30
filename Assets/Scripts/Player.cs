@@ -3,8 +3,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-//    public int HealthMax = 3;
-//    public int HealthCurrent;
+    [SerializeField] private AudioClip shootSoundClip;
+    //    public int HealthMax = 3;
+    //    public int HealthCurrent;
+
+
+    private AudioSource audioSource;
 
     public Bullet bulletPrefab;
 
@@ -21,6 +25,8 @@ public class Player : MonoBehaviour
     {
         rb2D = GetComponent<Rigidbody2D>();
         //HealthCurrent = HealthMax;
+
+
 
         screenBounds = new Bounds();
         screenBounds.Encapsulate(Camera.main.ScreenToWorldPoint(Vector3.zero));
@@ -69,8 +75,14 @@ public class Player : MonoBehaviour
     }
    private void Shoot()
     {
+        SoundManager.instance.PlaySoundClip(shootSoundClip, transform, 1f);
+
+
         Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position, this.transform.rotation);
         bullet.Project(this.transform.up);
+
+
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
