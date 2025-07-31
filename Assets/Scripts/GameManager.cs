@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
         GameOverPanel.SetActive(false);
     }
 
+    //ASTEROID DESTROY AND SCORE
     public void AsteroidDestroyed(Asteroid asteroid)
     {
 
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
     public float respawnTime = 3.0f;
     public float respawnInvTime = 3.0f;
 
+    //PLAYER DIED
     public void PlayerDied()
     {
         StartCoroutine(flash.FlashRoutine());
@@ -68,6 +70,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //AMMO MANAGEMENT?
+
+
+    //RESPAWNING
     private void Respawn()
     {
 
@@ -92,7 +98,7 @@ public class GameManager : MonoBehaviour
     }
 
     
-
+//HIGHSCORE??
     public int GetHighScore()
     {
         return PlayerPrefs.GetInt("HighScore", 0);

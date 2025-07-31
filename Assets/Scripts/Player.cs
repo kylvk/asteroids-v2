@@ -4,8 +4,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private AudioClip shootSoundClip;
+    [SerializeField] private AudioClip emptySoundClip;
     //    public int HealthMax = 3;
     //    public int HealthCurrent;
+    public int currentAmmo = 10, maxAmmo = 10;
 
 
     private AudioSource audioSource;
@@ -46,6 +48,12 @@ public class Player : MonoBehaviour
             
         }
 
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            // add delay/loading bar for UI
+            Reload();
+        }
+
         if (rb2D.position.x > screenBounds.max.x + 0.5f)
         {
             rb2D.position = new Vector2(screenBounds.min.x - 0.5f, rb2D.position.y);
@@ -73,16 +81,31 @@ public class Player : MonoBehaviour
         float torque = amount * TurnPower * Time.deltaTime;
         rb2D.AddTorque(-torque);
     }
-   private void Shoot()
+    //SHOOTING
+    private void Shoot()
     {
-        SoundManager.instance.PlaySoundClip(shootSoundClip, transform, 1f);
+        if (currentAmmo > 0)
+
+        {
+            SoundManager.instance.PlaySoundClip(shootSoundClip, transform, 1f);
 
 
-        Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position, this.transform.rotation);
-        bullet.Project(this.transform.up);
+            Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position, this.transform.rotation);
+            bullet.Project(this.transform.up);
+            currentAmmo--;
+        }
+        else
+        {
+            SoundManager.instance.PlaySoundClip(emptySoundClip, transform, 1f);
+        }
+    }
 
-
-
+    //RELOADING
+    public void Reload()
+    {
+        int reloadAmount = maxAmmo - currentAmmo; // how many bullets to reload ammo
+        //reloadAmount = (currentAmmo - reloadAmount) >= 0 ? reloadAmount : currentAmmo;
+        currentAmmo += reloadAmount;
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
