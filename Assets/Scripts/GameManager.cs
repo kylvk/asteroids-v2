@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public ScreenFlashUI flash;
     public int lives = 3;
     public int score = 0;
+    public int highscore = 0;
 
     public GameObject GameOverPanel;
 

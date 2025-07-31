@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameOverUI : MonoBehaviour
 {
@@ -24,15 +25,16 @@ public class GameOverUI : MonoBehaviour
     private Player player;
     private GameManager gameManager;
 
-    void Start()
+    public void Start()
     {
         gameManager = FindFirstObjectByType<GameManager>();
     }
-    void Update()
+    public void Update()
     {
         if (gameManager != null)
         {
             FinalScoreTextBox.text = "Score: " + gameManager.score.ToString();
+           // if (highscore < score) 
             HighScoreTextBox.text = "HighScore: " + gameManager.GetHighScore();
         }
 

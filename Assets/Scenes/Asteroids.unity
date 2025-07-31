@@ -522,6 +522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootSoundClip: {fileID: 8300000, guid: 8c0abca248aba834586342aa3c32be30, type: 3}
   emptySoundClip: {fileID: 8300000, guid: 402553ba1f09de547a4b571875757951, type: 3}
+  defaultreloadSoundClip: {fileID: 8300000, guid: cf93c1168f9382447a96d6accd419afc, type: 3}
   currentAmmo: 10
   maxAmmo: 10
   bulletPrefab: {fileID: 4516438698791000741, guid: 115a7e429f9fbdc488ae19111dcaede3, type: 3}
@@ -2023,7 +2024,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0}
   m_SizeDelta: {x: 4000, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1479683783
@@ -2046,7 +2047,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Score
+  m_text: 'Score: XXX'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 16f1e00f0d19faf43886dcc7fed6b112, type: 2}
   m_sharedMaterial: {fileID: 6266329597264763058, guid: 16f1e00f0d19faf43886dcc7fed6b112, type: 2}
@@ -2081,7 +2082,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 1024
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3009,6 +3010,7 @@ MonoBehaviour:
   flash: {fileID: 1340341448}
   lives: 3
   score: 0
+  highscore: 0
   GameOverPanel: {fileID: 1579125173}
   respawnTime: 3
   respawnInvTime: 3

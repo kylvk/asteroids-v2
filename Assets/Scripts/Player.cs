@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private AudioClip shootSoundClip;
     [SerializeField] private AudioClip emptySoundClip;
+    [SerializeField] private AudioClip defaultreloadSoundClip;
     //    public int HealthMax = 3;
     //    public int HealthCurrent;
     public int currentAmmo = 10, maxAmmo = 10;
@@ -103,6 +104,8 @@ public class Player : MonoBehaviour
     //RELOADING
     public void Reload()
     {
+        SoundManager.instance.PlaySoundClip(defaultreloadSoundClip, transform, 1f);
+
         int reloadAmount = maxAmmo - currentAmmo; // how many bullets to reload ammo
         //reloadAmount = (currentAmmo - reloadAmount) >= 0 ? reloadAmount : currentAmmo;
         currentAmmo += reloadAmount;
