@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -5,13 +6,14 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private AudioClip shootSoundClip;
     [SerializeField] private AudioClip emptySoundClip;
-    [SerializeField] private AudioClip defaultreloadSoundClip;
+    [SerializeField] private AudioClip defaultReloadSoundClip;
+    [SerializeField] private AmmoUI ammoUI;
     //    public int HealthMax = 3;
     //    public int HealthCurrent;
     public int currentAmmo = 10, maxAmmo = 10;
 
 
-    private AudioSource audioSource;
+    //private AudioSource audioSource;
 
     public Bullet bulletPrefab;
 
@@ -23,12 +25,20 @@ public class Player : MonoBehaviour
     private Bounds screenBounds;
 
 
+    //reload vars
+    private bool canShoot = true;
+    private bool canReload = true;
+
+    //upgrade vars
+    //public bool hasInstantReload = true;
+
+
 
     private void Start()
     {
         rb2D = GetComponent<Rigidbody2D>();
         //HealthCurrent = HealthMax;
-
+        canShoot = true;
 
 
         screenBounds = new Bounds();
@@ -85,7 +95,8 @@ public class Player : MonoBehaviour
     //SHOOTING
     private void Shoot()
     {
-        if (currentAmmo > 0)
+ 
+        if (currentAmmo > 0 && canShoot)
 
         {
             SoundManager.instance.PlaySoundClip(shootSoundClip, transform, 1f);
@@ -104,12 +115,27 @@ public class Player : MonoBehaviour
     //RELOADING
     public void Reload()
     {
-        SoundManager.instance.PlaySoundClip(defaultreloadSoundClip, transform, 1f);
+        //StartCoroutine 
+        canShoot = false;
+        canReload = false;
+        SoundManager.instance.PlaySoundClip(defaultReloadSoundClip, transform, 1f);
+        
+        //set bool of player not being able to shoot during duration
+        //allow player to shoot
+
 
         int reloadAmount = maxAmmo - currentAmmo; // how many bullets to reload ammo
         //reloadAmount = (currentAmmo - reloadAmount) >= 0 ? reloadAmount : currentAmmo;
         currentAmmo += reloadAmount;
     }
+
+    public IEnumerator Reloading()
+    {
+        canShoot = false;
+        canReload = false;
+
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Asteroid")
