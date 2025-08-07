@@ -30,5 +30,5 @@ public class ScreenFlashUI : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
     }
-
+   
 }
