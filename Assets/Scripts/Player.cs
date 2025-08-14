@@ -2,6 +2,11 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
+public enum Upgrade
+{
+    Single, Double, Heavy, FullAuto
+}
+
 public class Player : MonoBehaviour
 {
     [SerializeField] private AudioClip shootSoundClip;
@@ -10,6 +15,15 @@ public class Player : MonoBehaviour
     [SerializeField] private AmmoUI ammoUI;
     //    public int HealthMax = 3;
     //    public int HealthCurrent;
+
+    public Upgrade CurrentUpgrade;
+
+    public SpriteRenderer SpriteRenderer;
+
+    public Transform FiringPoint;
+
+    public Transform[] DoubleShotPoint;
+
     public int currentAmmo = 10, maxAmmo = 10;
 
 
@@ -44,6 +58,8 @@ public class Player : MonoBehaviour
         screenBounds = new Bounds();
         screenBounds.Encapsulate(Camera.main.ScreenToWorldPoint(Vector3.zero));
         screenBounds.Encapsulate(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0f)));
+
+        spriteRenderer.color = ColorX.GetRandomColor();
  
     }
     private void Update()
@@ -95,6 +111,10 @@ public class Player : MonoBehaviour
     //SHOOTING
     private void Shoot()
     {
+        if((CurrentUpgrade == Upgrade.Single))
+        {
+
+        }
  
         if (currentAmmo > 0 && canShoot)
 
@@ -102,8 +122,8 @@ public class Player : MonoBehaviour
             SoundManager.instance.PlaySoundClip(shootSoundClip, transform, 1f);
 
 
-            Bullet bullet = Instantiate(this.bulletPrefab, this.transform.position, this.transform.rotation);
-            bullet.Project(this.transform.up);
+            Bullet bullet = Instantiate(this.bulletPrefab, FiringPoint.transform.position, FiringPoint.transform.rotation);
+            bullet.Project(FiringPoint.transform.up);
             currentAmmo--;
         }
         else
@@ -129,12 +149,12 @@ public class Player : MonoBehaviour
         currentAmmo += reloadAmount;
     }
 
-    public IEnumerator Reloading()
-    {
-        canShoot = false;
-        canReload = false;
+    //public IEnumerator Reloading()
+    //{
+    //    canShoot = false;
+    //    canReload = false;
 
-    }
+   // }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -524,6 +524,7 @@ MonoBehaviour:
   emptySoundClip: {fileID: 8300000, guid: 402553ba1f09de547a4b571875757951, type: 3}
   defaultReloadSoundClip: {fileID: 8300000, guid: cf93c1168f9382447a96d6accd419afc, type: 3}
   ammoUI: {fileID: 0}
+  spriteRenderer: {fileID: 297392155}
   currentAmmo: 10
   maxAmmo: 10
   bulletPrefab: {fileID: 4516438698791000741, guid: 115a7e429f9fbdc488ae19111dcaede3, type: 3}

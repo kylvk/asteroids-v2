@@ -28,19 +28,19 @@ public class AmmoUI : MonoBehaviour
     
     }
 
-    public IEnumerator AmmoUIRoutine()
-    {
-        showSlider = true;
-        AmmoSlider.gameObject.SetActive(true);
+  //  public IEnumerator AmmoUIRoutine()
+  //  {
+   //     showSlider = true;
+    //    AmmoSlider.gameObject.SetActive(true);
         
 
-        AmmoSlider.maxValue = soundDuration;
-        AmmoSlider.value = soundDuration;
+ //       AmmoSlider.maxValue = soundDuration;
+  //      AmmoSlider.value = soundDuration;
 
         //set max value to sound duration
         //set slider value
         //move down to zero with clip length `
         //show slider = false;
 
-    }
+ //   }
 }
