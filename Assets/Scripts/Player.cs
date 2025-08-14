@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     //    public int HealthMax = 3;
     //    public int HealthCurrent;
 
-    public Upgrade CurrentUpgrade;
+    public Upgrade CurrentUpgrade = 0;
 
     public SpriteRenderer SpriteRenderer;
 
@@ -27,9 +27,12 @@ public class Player : MonoBehaviour
     public int currentAmmo = 10, maxAmmo = 10;
 
 
+
     //private AudioSource audioSource;
 
     public Bullet bulletPrefab;
+
+
 
     public float EnginePower = 10f;
     public float TurnPower = 10f;
@@ -37,6 +40,10 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb2D;
 
     private Bounds screenBounds;
+
+    //ammo ui visibility, may move to game manager idk
+
+    public AmmoUI AmmoUI;
 
 
     //reload vars
@@ -53,13 +60,14 @@ public class Player : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         //HealthCurrent = HealthMax;
         canShoot = true;
+        canReload = true;
 
 
         screenBounds = new Bounds();
         screenBounds.Encapsulate(Camera.main.ScreenToWorldPoint(Vector3.zero));
         screenBounds.Encapsulate(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0f)));
 
-        spriteRenderer.color = ColorX.GetRandomColor();
+       // SpriteRenderer.color = ColorX.GetRandomColor();
  
     }
     private void Update()
@@ -71,13 +79,11 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Shoot();
-            
+            Shoot();     
         }
 
         if(Input.GetKeyDown(KeyCode.R))
         {
-            // add delay/loading bar for UI
             Reload();
         }
 
@@ -111,12 +117,9 @@ public class Player : MonoBehaviour
     //SHOOTING
     private void Shoot()
     {
-        if((CurrentUpgrade == Upgrade.Single))
-        {
 
-        }
- 
-        if (currentAmmo > 0 && canShoot)
+
+        if (currentAmmo > 0 && canShoot && CurrentUpgrade == Upgrade.Single)
 
         {
             SoundManager.instance.PlaySoundClip(shootSoundClip, transform, 1f);
@@ -135,26 +138,29 @@ public class Player : MonoBehaviour
     //RELOADING
     public void Reload()
     {
-        //StartCoroutine 
+        if (currentAmmo < maxAmmo && canReload)
+        {
+            StartCoroutine(Reloading());
+            StartCoroutine(AmmoUI.AmmoUIRoutine());
+        }
+        else
+        {
+            SoundManager.instance.PlaySoundClip(emptySoundClip, transform, 1f);
+        }
+    }
+
+    public IEnumerator Reloading()
+    {
+        SoundManager.instance.PlaySoundClip(defaultReloadSoundClip, transform, 1f);
         canShoot = false;
         canReload = false;
-        SoundManager.instance.PlaySoundClip(defaultReloadSoundClip, transform, 1f);
-        
-        //set bool of player not being able to shoot during duration
-        //allow player to shoot
-
-
+        yield return new WaitForSeconds(defaultReloadSoundClip.length);
+        canShoot = true;
+        canReload = true;
         int reloadAmount = maxAmmo - currentAmmo; // how many bullets to reload ammo
         //reloadAmount = (currentAmmo - reloadAmount) >= 0 ? reloadAmount : currentAmmo;
         currentAmmo += reloadAmount;
     }
-
-    //public IEnumerator Reloading()
-    //{
-    //    canShoot = false;
-    //    canReload = false;
-
-   // }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -171,7 +177,7 @@ public class Player : MonoBehaviour
 
 
 
-
+//    old health garbage
 //    public void TakeDamage(int damage)
 //    {
 //        HealthCurrent -= damage;

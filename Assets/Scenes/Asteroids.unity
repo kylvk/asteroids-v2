@@ -524,14 +524,18 @@ MonoBehaviour:
   emptySoundClip: {fileID: 8300000, guid: 402553ba1f09de547a4b571875757951, type: 3}
   defaultReloadSoundClip: {fileID: 8300000, guid: cf93c1168f9382447a96d6accd419afc, type: 3}
   ammoUI: {fileID: 0}
-  spriteRenderer: {fileID: 297392155}
+  CurrentUpgrade: 0
+  SpriteRenderer: {fileID: 0}
   FiringPoint: {fileID: 772401390}
-  DoubleShotPoint: []
+  DoubleShotPoint:
+  - {fileID: 1663509867}
+  - {fileID: 1596171971}
   currentAmmo: 10
   maxAmmo: 10
   bulletPrefab: {fileID: 4516438698791000741, guid: 115a7e429f9fbdc488ae19111dcaede3, type: 3}
   EnginePower: 180
   TurnPower: 9
+  AmmoUI: {fileID: 699239679}
 --- !u!61 &297392153
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1291,8 +1295,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 517222ec37fbe4341bb1d514068fded1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultReloadSoundClip: {fileID: 8300000, guid: cf93c1168f9382447a96d6accd419afc, type: 3}
   AmmoTextBox: {fileID: 1452756283}
   AmmoSlider: {fileID: 837703902}
+  player: {fileID: 297392152}
 --- !u!1 &772401389
 GameObject:
   m_ObjectHideFlags: 0
@@ -2733,7 +2739,7 @@ Transform:
   m_GameObject: {fileID: 1596171970}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2764,7 +2770,7 @@ Transform:
   m_GameObject: {fileID: 1663509866}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3426,6 +3432,7 @@ MonoBehaviour:
   player: {fileID: 297392152}
   Explode: {fileID: 361062520}
   flash: {fileID: 1340341448}
+  ammoUI: {fileID: 0}
   lives: 3
   score: 0
   highscore: 0

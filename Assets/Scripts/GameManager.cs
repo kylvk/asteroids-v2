@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     public Player player;
     public ParticleSystem Explode;
     public ScreenFlashUI flash;
+
+    public AmmoUI ammoUI;
+
     public int lives = 3;
     public int score = 0;
     public int highscore = 0;

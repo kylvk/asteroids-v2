@@ -6,15 +6,17 @@ using UnityEngine.UI;
 
 public class AmmoUI : MonoBehaviour
 {
+    [SerializeField] private AudioClip defaultReloadSoundClip;
     public TMP_Text AmmoTextBox;
     public Slider AmmoSlider;
-    private Player player;
+    public Player player;
 
-    private bool showSlider = true;
 
     void Start()
     {
+        AmmoSlider.gameObject.SetActive(false);
         player = FindFirstObjectByType<Player>();
+        //showSlider = false;
     }
     void Update()
     {
@@ -23,24 +25,17 @@ public class AmmoUI : MonoBehaviour
             AmmoTextBox.text = "Ammo: " + player.currentAmmo.ToString() + "/" + player.maxAmmo.ToString();
         }
     }
-    private void sliderVisiblity()
+
+    public IEnumerator AmmoUIRoutine()
     {
-    
+  
+        AmmoSlider.gameObject.SetActive(true);
+        AmmoSlider.maxValue = defaultReloadSoundClip.length;
+        AmmoSlider.value = defaultReloadSoundClip.length;
+
+        AmmoSlider.value = AmmoSlider.maxValue;
+        yield return new WaitForSeconds(defaultReloadSoundClip.length);
+        AmmoSlider.gameObject.SetActive(false);
+
     }
-
-  //  public IEnumerator AmmoUIRoutine()
-  //  {
-   //     showSlider = true;
-    //    AmmoSlider.gameObject.SetActive(true);
-        
-
- //       AmmoSlider.maxValue = soundDuration;
-  //      AmmoSlider.value = soundDuration;
-
-        //set max value to sound duration
-        //set slider value
-        //move down to zero with clip length `
-        //show slider = false;
-
- //   }
 }
