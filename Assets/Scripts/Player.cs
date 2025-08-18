@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum Upgrade
 {
-    Single, Double, Heavy, FullAuto
+    Single, Twin, Heavy, FullAuto
 }
 
 public class Player : MonoBehaviour
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     public Transform FiringPoint;
 
-    public Transform[] DoubleShotPoint;
+    public Transform[] TwinShotPoint;
 
     public int currentAmmo = 10, maxAmmo = 10;
 
@@ -51,8 +51,9 @@ public class Player : MonoBehaviour
     private bool canReload = true;
 
     //upgrade vars
+    //public bool hasTwinShot = false;
     //public bool hasInstantReload = true;
-
+    //public bool hasFullAuto = true;
 
 
     private void Start()
@@ -61,6 +62,8 @@ public class Player : MonoBehaviour
         //HealthCurrent = HealthMax;
         canShoot = true;
         canReload = true;
+
+        //hasTwinShot = false;
 
 
         screenBounds = new Bounds();
@@ -85,6 +88,11 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R))
         {
             Reload();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            //CurrentUpgrade = Twin;
         }
 
         if (rb2D.position.x > screenBounds.max.x + 0.5f)
@@ -129,11 +137,23 @@ public class Player : MonoBehaviour
             bullet.Project(FiringPoint.transform.up);
             currentAmmo--;
         }
+        else if (currentAmmo > 0 && canShoot && CurrentUpgrade == Upgrade.Twin)
+        {
+            SoundManager.instance.PlaySoundClip(shootSoundClip, transform, 1f);
+
+            //Bullet bullet = Instantiate(this.bulletPrefab, TwinShotPoint.transform.getco.position, FiringPoint.transform.rotation);
+
+            //bullet.Project(FiringPoint.transform.up);
+            currentAmmo -= 2;
+        }
         else
         {
             SoundManager.instance.PlaySoundClip(emptySoundClip, transform, 1f);
         }
     }
+
+    //twinshot
+
 
     //RELOADING
     public void Reload()

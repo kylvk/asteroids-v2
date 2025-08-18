@@ -23,8 +23,17 @@ public static SoundManager instance;
 
         audioSource.volume = volume;
 
-        //play sound
-        audioSource.Play();
+        //audio when paused goes pitches down
+        if (PauseMenu.GamePaused)
+        {
+            audioSource.pitch *= .5f;
+        } else
+        {
+            audioSource.pitch *= 1f;
+        }
+
+            //play sound
+            audioSource.Play();
 
         //get length
         float clipLength = audioSource.clip.length;
