@@ -153,7 +153,7 @@ public class Player : MonoBehaviour
             SoundManager.instance.PlaySoundClip(shootSoundClip, transform, 1f);
 
 
-            Bullet bullet = Instantiate(this.bulletPrefab, FiringPoint.transform.position, FiringPoint.transforhttps://discussions.unity.com/t/operators-and/527586m.rotation);
+            Bullet bullet = Instantiate(this.bulletPrefab, FiringPoint.transform.position, FiringPoint.transform.rotation);
             bullet.Project(FiringPoint.transform.up);
             currentAmmo--;
         }

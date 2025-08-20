@@ -14,7 +14,7 @@ public class ScoreUI : MonoBehaviour
     {
         if (gameManager != null)
         {
-            ScoreTextBox.text = "Score: " + gameManager.score.ToString();
+            ScoreTextBox.text = "Credits: " + gameManager.score.ToString();
         }
     }
 }
