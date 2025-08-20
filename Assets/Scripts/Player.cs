@@ -141,7 +141,7 @@ public class Player : MonoBehaviour
         {
             SoundManager.instance.PlaySoundClip(shootSoundClip, transform, 1f);
 
-            //Bullet bullet = Instantiate(this.bulletPrefab, TwinShotPoint.transform.getco.position, FiringPoint.transform.rotation);
+            Bullet bullet = Instantiate(this.bulletPrefab, TwinShotPoint.transform.getco.position, FiringPoint.transform.rotation);
 
             //bullet.Project(FiringPoint.transform.up);
             currentAmmo -= 2;
