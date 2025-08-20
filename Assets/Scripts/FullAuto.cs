@@ -1,8 +1,8 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Powerups/Twinshot")]
+[CreateAssetMenu(menuName = "Powerups/FullAuto")]
 
-public class TwinShot : PowerupEffect
+public class FullAuto : PowerupEffect
 
 {
     [SerializeField] Sprite newSprite;
@@ -12,7 +12,7 @@ public class TwinShot : PowerupEffect
         target.GetComponent<Player>().maxAmmo += amount;
         target.GetComponent<Player>().currentAmmo += amount;
         target.GetComponent<SpriteRenderer>().sprite = newSprite;
-        target.GetComponent<Player>().CurrentUpgrade = Upgrade.Twin;
-        Debug.Log("twinshot acquired");
+        target.GetComponent<Player>().CurrentUpgrade = Upgrade.FullAuto;
+        Debug.Log("fullauto acquired");
     }
 }

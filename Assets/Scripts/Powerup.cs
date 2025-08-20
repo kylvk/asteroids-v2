@@ -13,7 +13,7 @@ public class Powerup : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-            powerupEffect.Apply(collision.gameObject);
+            powerupEffect.Apply(collision.gameObject); 
         }
 
         else if (collision.gameObject.tag == "Bullet")

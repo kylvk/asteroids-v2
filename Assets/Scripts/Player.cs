@@ -16,15 +16,24 @@ public class Player : MonoBehaviour
     //    public int HealthMax = 3;
     //    public int HealthCurrent;
 
+
+
     public Upgrade CurrentUpgrade = 0;
 
     public SpriteRenderer SpriteRenderer;
 
     public Transform FiringPoint;
 
-    public Transform[] TwinShotPoint;
+    public Transform TwinFiringPointA;
+
+    public Transform TwinFiringPointB;
+
 
     public int currentAmmo = 10, maxAmmo = 10;
+
+    //full auto bs
+    public float fireRate = 0.1f;
+    private float nextFireTime;
 
 
 
@@ -51,6 +60,8 @@ public class Player : MonoBehaviour
     private bool canReload = true;
 
     //upgrade vars
+    // public bool hasTwinshot = true;
+
     //public bool hasTwinShot = false;
     //public bool hasInstantReload = true;
     //public bool hasFullAuto = true;
@@ -70,8 +81,8 @@ public class Player : MonoBehaviour
         screenBounds.Encapsulate(Camera.main.ScreenToWorldPoint(Vector3.zero));
         screenBounds.Encapsulate(Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0f)));
 
-       // SpriteRenderer.color = ColorX.GetRandomColor();
- 
+        // SpriteRenderer.color = ColorX.GetRandomColor();
+
     }
     private void Update()
     {
@@ -80,17 +91,26 @@ public class Player : MonoBehaviour
         ApplyThrust(vert);
         ApplyTorque(horiz);
 
+
+        //fullauto shooting
+        if (Input.GetMouseButton(0) && Time.time >= nextFireTime && CurrentUpgrade == Upgrade.FullAuto)
+        {
+            Shoot();
+            nextFireTime = Time.time + fireRate;
+        }
+        
+        //normal shooting
         if (Input.GetMouseButtonDown(0))
         {
-            Shoot();     
+            Shoot();
         }
 
-        if(Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             Reload();
         }
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             //CurrentUpgrade = Twin;
         }
@@ -127,23 +147,25 @@ public class Player : MonoBehaviour
     {
 
 
-        if (currentAmmo > 0 && canShoot && CurrentUpgrade == Upgrade.Single)
+        if (currentAmmo > 0 && canShoot && CurrentUpgrade != Upgrade.Twin)
 
         {
             SoundManager.instance.PlaySoundClip(shootSoundClip, transform, 1f);
 
 
-            Bullet bullet = Instantiate(this.bulletPrefab, FiringPoint.transform.position, FiringPoint.transform.rotation);
+            Bullet bullet = Instantiate(this.bulletPrefab, FiringPoint.transform.position, FiringPoint.transforhttps://discussions.unity.com/t/operators-and/527586m.rotation);
             bullet.Project(FiringPoint.transform.up);
             currentAmmo--;
         }
         else if (currentAmmo > 0 && canShoot && CurrentUpgrade == Upgrade.Twin)
         {
+            Bullet bullet = Instantiate(this.bulletPrefab, TwinFiringPointA.transform.position, TwinFiringPointA.transform.rotation);
+            bullet.Project(TwinFiringPointA.transform.up);
+
             SoundManager.instance.PlaySoundClip(shootSoundClip, transform, 1f);
+            StartCoroutine(TwinshotShootRoutine());
+            StartCoroutine(TwinshotSoundRoutine());
 
-            Bullet bullet = Instantiate(this.bulletPrefab, TwinShotPoint.transform.getco.position, FiringPoint.transform.rotation);
-
-            //bullet.Project(FiringPoint.transform.up);
             currentAmmo -= 2;
         }
         else
@@ -152,7 +174,22 @@ public class Player : MonoBehaviour
         }
     }
 
-    //twinshot
+    //twinshotsound?
+    public IEnumerator TwinshotSoundRoutine()
+    {
+        //SoundManager.instance.PlaySoundClip(shootSoundClip, transform, 1f);
+        yield return new WaitForSeconds(0.05f);
+        SoundManager.instance.PlaySoundClip(shootSoundClip, transform, 1f);
+
+    }
+
+    //twinshot shoot
+    public IEnumerator TwinshotShootRoutine()
+    {
+        yield return new WaitForSeconds(0.05f);
+        Bullet bullet = Instantiate(this.bulletPrefab, TwinFiringPointB.transform.position, TwinFiringPointB.transform.rotation);
+        bullet.Project(TwinFiringPointB.transform.up);
+    }
 
 
     //RELOADING

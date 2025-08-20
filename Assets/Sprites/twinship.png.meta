@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 75749c86f56f8f94197c02195144ee78
+guid: ca2a1fa95d4b46f41862975ec91627ee
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1940440057312286766
-    second: paintship_0
+      213: -6598870644219903023
+    second: twinship_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: paintship_0
+      name: twinship_0
       rect:
         serializedVersion: 2
         x: 5
         y: 1
         width: 511
-        height: 482
+        height: 481
       alignment: 9
-      pivot: {x: 0.48317498, y: 0.31883898}
+      pivot: {x: 0.48516744, y: 0.33999878}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e28990483f3ddea10800000000000000
-      internalID: 1940440057312286766
+      spriteID: 1d305848c1a1c64a0800000000000000
+      internalID: -6598870644219903023
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: daeb0c8e40b933b45a58a5433004d47f
+    spriteID: ab36b4e7317fd894e8bc84df6384bdbb
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      paintship_0: 1940440057312286766
+      twinship_0: -6598870644219903023
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -9,6 +9,6 @@ public class MagBuff : PowerupEffect
     {
         target.GetComponent<Player>().maxAmmo += amount;
         target.GetComponent<Player>().currentAmmo += amount;
-        target.GetComponent<SpriteRenderer>().color = Color.orange;
+        //target.GetComponent<SpriteRenderer>().color = Color.orange;
     }
 }
