@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd22608e2e5382c4cbd0660b586cb42a, type: 3}
   m_Name: tenFullAuto
   m_EditorClassIdentifier: 
-  newSprite: {fileID: -6598870644219903023, guid: ca2a1fa95d4b46f41862975ec91627ee, type: 3}
+  newSprite: {fileID: -3730638075816020039, guid: 9ac66b924cb57574289a5088d0119b53, type: 3}
   amount: 10
