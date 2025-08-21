@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip[] hurtSoundClips;
     [SerializeField] private AudioClip deathSoundClip;
 
+    public static GameManager instance;
+
     public Player player;
     public ParticleSystem Explode;
     public ScreenFlashUI flash;
@@ -23,6 +25,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         GameOverPanel.SetActive(false);
+
+        //instantiate
+        if (instance == null)
+        {
+            instance = this;
+        }
     }
 
     //ASTEROID DESTROY AND SCORE
@@ -74,11 +82,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //AMMO MANAGEMENT?
-
-
     //RESPAWNING
-    private void Respawn()
+    public void Respawn()
     {
 
         this.player.transform.position = Vector3.zero;
@@ -101,8 +106,9 @@ public class GameManager : MonoBehaviour
        // Invoke(nameof(Respawn), this.respawnTime);
     }
 
-    
-//HIGHSCORE??
+
+
+    //HIGHSCORE??
     public int GetHighScore()
     {
         return PlayerPrefs.GetInt("HighScore", 0);

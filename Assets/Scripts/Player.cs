@@ -223,13 +223,30 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Asteroid")
         {
+            Debug.Log("hit");
             rb2D.linearVelocity = Vector3.zero;
             rb2D.angularVelocity = 0f;
 
             this.gameObject.SetActive(false);
 
             FindAnyObjectByType<GameManager>().PlayerDied();
-        }    
+        }
+        //SHOP ENTRY COLLISION SHIT
+        if (collision.gameObject.tag == "ShopEntry")
+        {
+            ShopManager.instance.EnterShop();
+            Debug.Log("killed momentum");
+            rb2D.linearVelocity = Vector3.zero;
+            rb2D.angularVelocity = 0f;
+
+        }
+        if (collision.gameObject.tag == "ShopExit")
+        {
+            Debug.Log("Shop exited, have a nice day");
+            rb2D.linearVelocity = Vector3.zero;
+            rb2D.angularVelocity = 0f;
+
+        }
     }
 
 

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Bullet
   - Asteroid
+  - ShopEntry
+  - ShopExit
   layers:
   - Default
   - TransparentFX

@@ -52,6 +52,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a94a2d46f6b8e60499e839af7760099f, type: 3}
   - {fileID: 8300000, guid: 1bc11f475f9948443b82a14f4337ea8e, type: 3}
   - {fileID: 8300000, guid: df899149608b9e740b1d0493d8e5750b, type: 3}
+  equipSoundClip: {fileID: 8300000, guid: 2b409d28b33e1a54e9883a5e2fdd800e, type: 3}
   Explode: {fileID: 4853253564496941861, guid: 71a50e9be9211ae4a8c4d7e41cf57f5c, type: 3}
   powerupEffect: {fileID: 11400000, guid: 76d5c747ce9f1704bae8eca6530a2472, type: 2}
 --- !u!212 &377038890170285219

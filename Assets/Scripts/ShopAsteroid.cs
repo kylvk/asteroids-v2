@@ -1,25 +1,26 @@
 using UnityEngine;
 
-public class Powerup : MonoBehaviour
-
+public class ShopAsteroid : MonoBehaviour
 {
+
     [SerializeField] private AudioClip[] damageSoundClips;
     [SerializeField] private AudioClip equipSoundClip;
 
     public ParticleSystem Explode;
 
-    public PowerupEffect powerupEffect;
+
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            SoundManager.instance.PlaySoundClip(equipSoundClip, transform, 1f);
+        //if (collision.gameObject.tag == "Player")
+        //{
+            
+        //   Destroy(gameObject);
+        //   ShopManager.instance.EnterShop();
 
-            Destroy(gameObject);
-            powerupEffect.Apply(collision.gameObject); 
-        }
-
-        else if (collision.gameObject.tag == "Bullet")
+        //}
+       if (collision.gameObject.tag == "Bullet")
         {
             SoundManager.instance.PlayRandomSoundClip(damageSoundClips, transform, 1f);
 
