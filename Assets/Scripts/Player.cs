@@ -98,6 +98,7 @@ public class Player : MonoBehaviour
             Shoot();
             nextFireTime = Time.time + fireRate;
         }
+
         
         //normal shooting
         if (Input.GetMouseButtonDown(0))
@@ -109,10 +110,11 @@ public class Player : MonoBehaviour
         {
             Reload();
         }
+        //shop debug
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            //CurrentUpgrade = Twin;
+            ShopManager.instance.EnterShop();
         }
 
         if (rb2D.position.x > screenBounds.max.x + 0.5f)

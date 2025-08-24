@@ -56,6 +56,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //are you broke
+    public bool TrySpend(int amount)
+    {
+        if (score >= amount)
+        {
+            score -= amount;
+            //UpdateScoreUI(); // If you have a score text UI, update it here
+            return true;
+        }
+        return false;
+    }
 
     public float respawnTime = 3.0f;
     public float respawnInvTime = 3.0f;

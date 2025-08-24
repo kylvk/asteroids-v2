@@ -55,6 +55,7 @@ MonoBehaviour:
   equipSoundClip: {fileID: 8300000, guid: 2b409d28b33e1a54e9883a5e2fdd800e, type: 3}
   Explode: {fileID: 4853253564496941861, guid: 71a50e9be9211ae4a8c4d7e41cf57f5c, type: 3}
   powerupEffect: {fileID: 11400000, guid: 76d5c747ce9f1704bae8eca6530a2472, type: 2}
+  displayName: Extended Mag
 --- !u!212 &377038890170285219
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -98,7 +99,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: a6498cd3c7bf53b46a56b19ff8a0c1d0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

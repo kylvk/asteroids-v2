@@ -31,6 +31,15 @@ public class Asteroid : MonoBehaviour
         this.transform.localScale = Vector3.one * this.size;
 
         rb.mass = this.size;
+
+        if (ShopManager.instance != null && ShopManager.instance.InShop)
+        {
+            Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
+            foreach (var col in colliders)
+            {
+                col.enabled = false;
+            }
+        }
     }
 
     public void SetTrajectory(Vector2 direction)

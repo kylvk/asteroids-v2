@@ -21,7 +21,7 @@ TagManager:
   - Boundary
   - IgnoreCollisions
   - NewUI
-  - 
+  - PlayerInShop
   - 
   - 
   - 
@@ -42,8 +42,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Asteroids
+    uniqueID: 2897709877
+    locked: 0
+  - name: Player
+    uniqueID: 2433243177
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 867998051
     locked: 0
   m_RenderingLayers:
   - Default

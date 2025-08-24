@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: d24de0b192f93ed4a83def8efd30d279, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -180,3 +180,4 @@ MonoBehaviour:
   equipSoundClip: {fileID: 8300000, guid: 2b409d28b33e1a54e9883a5e2fdd800e, type: 3}
   Explode: {fileID: 4853253564496941861, guid: 71a50e9be9211ae4a8c4d7e41cf57f5c, type: 3}
   powerupEffect: {fileID: 11400000, guid: 5e8e13a40b23aae43a9c6ee437d71d84, type: 2}
+  displayName: Twin Barrel

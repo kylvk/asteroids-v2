@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 6768832267343500724}
   - component: {fileID: 1318653008264865625}
   - component: {fileID: 839785170043911004}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShopAsteroid
-  m_TagString: ShopEntry
+  m_TagString: Asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,7 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fb883223074f224fa98cc208d07e2ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageSoundClips: []
+  damageSoundClips:
+  - {fileID: 8300000, guid: 2057fa65cc13d6e4790f4a5fb0c48b70, type: 3}
   Explode: {fileID: 0}
   speed: 25
   maxLifetime: 30

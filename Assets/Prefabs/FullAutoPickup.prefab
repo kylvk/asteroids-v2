@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 4
   m_Sprite: {fileID: -8650170654310842946, guid: ef02fac5e8581314e9a293101d3349b2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -108,8 +108,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1bc11f475f9948443b82a14f4337ea8e, type: 3}
   - {fileID: 8300000, guid: df899149608b9e740b1d0493d8e5750b, type: 3}
   equipSoundClip: {fileID: 8300000, guid: 2b409d28b33e1a54e9883a5e2fdd800e, type: 3}
-  Explode: {fileID: 0}
+  Explode: {fileID: 4853253564496941861, guid: 71a50e9be9211ae4a8c4d7e41cf57f5c, type: 3}
   powerupEffect: {fileID: 11400000, guid: 9e4b5f52a77421d45b3bad8042178df2, type: 2}
+  displayName: Full Auto
 --- !u!50 &218970575168233257
 Rigidbody2D:
   serializedVersion: 5
