@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageSoundClips:
   - {fileID: 8300000, guid: 2057fa65cc13d6e4790f4a5fb0c48b70, type: 3}
-  Explode: {fileID: 0}
+  Explode: {fileID: 4853253564496941861, guid: 71a50e9be9211ae4a8c4d7e41cf57f5c, type: 3}
   speed: 25
   maxLifetime: 30
 --- !u!212 &6768832267343500724

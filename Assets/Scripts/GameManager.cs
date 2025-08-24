@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioClip[] damageSoundClips;
     [SerializeField] private AudioClip[] hurtSoundClips;
     [SerializeField] private AudioClip deathSoundClip;
+    [SerializeField] private AudioClip startupSound;
 
     public static GameManager instance;
 
@@ -24,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        SoundManager.instance.PlaySoundClip(startupSound, transform, 1f);
+
         GameOverPanel.SetActive(false);
 
         //instantiate
@@ -59,15 +62,14 @@ public class GameManager : MonoBehaviour
     //are you broke
     public bool TrySpend(int amount)
     {
+        Debug.Log($"Trying to spend {amount}, current score: {score}");
         if (score >= amount)
         {
             score -= amount;
-            //UpdateScoreUI(); // If you have a score text UI, update it here
             return true;
         }
         return false;
     }
-
     public float respawnTime = 3.0f;
     public float respawnInvTime = 3.0f;
 
@@ -96,16 +98,31 @@ public class GameManager : MonoBehaviour
     //RESPAWNING
     public void Respawn()
     {
-
         this.player.transform.position = Vector3.zero;
         this.player.gameObject.layer = LayerMask.NameToLayer("IgnoreCollisions");
         this.player.gameObject.SetActive(true);
+
+        SpriteRenderer spriteRenderer = this.player.GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            Color color = spriteRenderer.color;
+            color.a = 0.5f; 
+            spriteRenderer.color = color;
+        }
 
         Invoke(nameof(TurnOnCollisions), this.respawnInvTime);
     }
     private void TurnOnCollisions()
     {
         this.player.gameObject.layer = LayerMask.NameToLayer("Player");
+        // Restore full opacity
+        SpriteRenderer spriteRenderer = this.player.GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            Color color = spriteRenderer.color;
+            color.a = 1f; // Fully opaque
+            spriteRenderer.color = color;
+        }
     }
     private void GameOver()
     {

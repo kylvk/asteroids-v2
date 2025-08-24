@@ -15,6 +15,8 @@ public class ShopManager : MonoBehaviour
     public static ShopManager instance;
     private AudioSource shopMusicSource;
 
+
+
     public Transform shopItemPointA;
     public Transform shopItemPointB;
     public GameObject[] powerupPrefabs;
@@ -122,7 +124,7 @@ public class ShopManager : MonoBehaviour
     {
         if (powerupPrefabs.Length < 2)
         {
-            Debug.LogWarning("add more powerups");
+            Debug.LogWarning("Add more powerups to the powerupPrefabs array.");
             return;
         }
 
@@ -132,31 +134,36 @@ public class ShopManager : MonoBehaviour
         do
         {
             indexB = Random.Range(0, powerupPrefabs.Length);
-        } while (indexB == indexA); // makes sure no two powerups are the same
+        } while (indexB == indexA); // ensure two arent both the same
 
         itemA = Instantiate(powerupPrefabs[indexA], shopItemPointA.position, Quaternion.identity, shopItemPointA);
         itemB = Instantiate(powerupPrefabs[indexB], shopItemPointB.position, Quaternion.identity, shopItemPointB);
 
+      
+        priceA = Random.Range(500, 2001);
+        priceB = Random.Range(500, 2001);
 
-        //declare and assign powerup a and b and prices (SOME ASPECTS OF THE FOLLOWING CODE INCLUDE CONCEPTS DERRIVED FROM AI QUERIES)
+        // Assign powerup
         Powerup powerupA = itemA.GetComponent<Powerup>();
         Powerup powerupB = itemB.GetComponent<Powerup>();
 
-        powerupA.price = priceA;
-        powerupA.isShopItem = true;
-        powerupB.price = priceA;
-        powerupB.isShopItem = true;
+        if (powerupA != null)
+        {
+            powerupA.price = priceA;
+            powerupA.isShopItem = true;
+            itemAText.text = powerupA.displayName;
+            itemAPriceText.text = priceA + "$";
+        }
 
-        priceA = Random.Range(1000, 3001);
-        priceB = Random.Range(1000, 3001);
-
-        itemAText.text = powerupA != null ? powerupA.displayName : "Unknown Item";
-        itemBText.text = powerupB != null ? powerupB.displayName : "Unknown Item";
-
-        itemAPriceText.text = priceA.ToString() + "$";
-        itemBPriceText.text = priceB.ToString() + "$";
-
+        if (powerupB != null)
+        {
+            powerupB.price = priceB;
+            powerupB.isShopItem = true;
+            itemBText.text = powerupB.displayName;
+            itemBPriceText.text = priceB + "$";
+        }
     }
+
     private void ClearShopItems()
     {
         if (itemA != null)

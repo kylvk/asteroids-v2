@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4722614291459041515}
-  - component: {fileID: 7468352467670253470}
+  - component: {fileID: 3129974672542070545}
   - component: {fileID: 377038890170285219}
   - component: {fileID: 4262485710357341598}
   - component: {fileID: 6589718962260272082}
   m_Layer: 0
-  m_Name: MagBuffPickup
+  m_Name: LifeBuffPickup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7468352467670253470
+--- !u!114 &3129974672542070545
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,14 +49,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageSoundClips:
   - {fileID: 8300000, guid: 2057fa65cc13d6e4790f4a5fb0c48b70, type: 3}
-  - {fileID: 8300000, guid: a94a2d46f6b8e60499e839af7760099f, type: 3}
-  - {fileID: 8300000, guid: 1bc11f475f9948443b82a14f4337ea8e, type: 3}
-  - {fileID: 8300000, guid: df899149608b9e740b1d0493d8e5750b, type: 3}
   equipSoundClip: {fileID: 8300000, guid: 2b409d28b33e1a54e9883a5e2fdd800e, type: 3}
   Explode: {fileID: 4853253564496941861, guid: 71a50e9be9211ae4a8c4d7e41cf57f5c, type: 3}
-  powerupEffect: {fileID: 11400000, guid: 76d5c747ce9f1704bae8eca6530a2472, type: 2}
-  displayName: Extended Mag
-  price: 1000
+  powerupEffect: {fileID: 11400000, guid: d9df1b9a460e1904ea2d963b18b74e22, type: 2}
+  displayName: Extra life
+  price: 10
   isShopItem: 1
 --- !u!212 &377038890170285219
 SpriteRenderer:
@@ -102,7 +99,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: a6498cd3c7bf53b46a56b19ff8a0c1d0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3941a9c11e911a7499dab18a1e4c5126, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

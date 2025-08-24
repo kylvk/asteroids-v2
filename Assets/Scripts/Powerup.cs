@@ -7,56 +7,47 @@ public class Powerup : MonoBehaviour
 
     public ParticleSystem Explode;
     public PowerupEffect powerupEffect;
-    public string displayName = "name goes here";
 
-    // New variables for shop functionality (SOME ASPECTS OF THE FOLLOWING CODE INCLUDE CONCEPTS DERRIVED FROM AI QUERIES)
-    public int price = 1000;         
-    public bool isShopItem = false;  
+    public string displayName = "Powerup";
+    public int price = 10;                  // Set by ShopManager
+    public bool isShopItem = false;         
 
+    private bool isEquipping = false;
     private bool purchased = false;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (isEquipping || !collision.CompareTag("Player")) return;
+
+        if (isShopItem)
         {
-            if (isShopItem)
+            if (!purchased && GameManager.instance.TrySpend(price))
             {
-                // Only allow purchase if not already bought
-                if (!purchased)
-                {
-                    if (GameManager.instance.TrySpend(price))
-                    {
-                        ApplyPowerup(collision.gameObject);
-                        Debug.Log($"Purchased {displayName} for {price}.");
-                        purchased = true;
-                        Destroy(gameObject);
-                    }
-                    else
-                    {
-                        Debug.Log($"Not enough funds to buy {displayName} ({price}).");
-                    }
-                }
-            }
-            else
-            {
-                //incase implementing powerups to be spawned like asteroids
-                ApplyPowerup(collision.gameObject);
-                Destroy(gameObject);
+                purchased = true;
+                EquipPowerup(collision.gameObject);
             }
         }
-
-        else if (collision.CompareTag("Bullet"))
+        else
         {
-            SoundManager.instance.PlayRandomSoundClip(damageSoundClips, transform, 1f);
-            this.Explode.transform.position = this.transform.position;
-            this.Explode.Play();
-            Destroy(gameObject);
+            EquipPowerup(collision.gameObject);
         }
     }
 
-    private void ApplyPowerup(GameObject player)
+    private void EquipPowerup(GameObject player)
     {
+        if (isEquipping) return;
+
+        isEquipping = true;
         SoundManager.instance.PlaySoundClip(equipSoundClip, transform, 1f);
         powerupEffect.Apply(player);
+        Destroy(gameObject);
+    }
+
+    private void HandleBulletHit()
+    {
+        SoundManager.instance.PlayRandomSoundClip(damageSoundClips, transform, 1f);
+        Explode.transform.position = transform.position;
+        Explode.Play();
+        Destroy(gameObject);
     }
 }

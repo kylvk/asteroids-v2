@@ -37,6 +37,7 @@ public class ShopAsteroid : MonoBehaviour
             this.Explode.transform.position = this.transform.position;
             this.Explode.Play();
             Destroy(gameObject);
+            
         }
     }
 }

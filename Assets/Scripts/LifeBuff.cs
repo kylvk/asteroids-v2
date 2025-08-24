@@ -1,16 +1,15 @@
 using UnityEngine;
 
-public class LifeBuff : MonoBehaviour
+[CreateAssetMenu(menuName = "Powerups/LifeBuff")]
+public class LifeBuff : PowerupEffect
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public int amount;
 
-    // Update is called once per frame
-    void Update()
+    public override void Apply(GameObject target)
     {
-        
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.lives += amount;
+        }
     }
 }

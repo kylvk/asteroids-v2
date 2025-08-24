@@ -111,6 +111,8 @@ MonoBehaviour:
   Explode: {fileID: 4853253564496941861, guid: 71a50e9be9211ae4a8c4d7e41cf57f5c, type: 3}
   powerupEffect: {fileID: 11400000, guid: 9e4b5f52a77421d45b3bad8042178df2, type: 2}
   displayName: Full Auto
+  price: 1000
+  isShopItem: 1
 --- !u!50 &218970575168233257
 Rigidbody2D:
   serializedVersion: 5
