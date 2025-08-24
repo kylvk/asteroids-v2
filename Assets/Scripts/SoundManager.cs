@@ -13,34 +13,24 @@ public static SoundManager instance;
             instance = this;
         }
     }
-    public void PlaySoundClip(AudioClip audioClip, Transform spawnTransform, float volume)
+    public AudioSource PlaySoundClip(AudioClip audioClip, Transform spawnTransform, float volume)
     {
-        //spawn in game
         AudioSource audioSource = Instantiate(soundObject, spawnTransform.position, Quaternion.identity);
 
-        //assign audio clip
         audioSource.clip = audioClip;
-
         audioSource.volume = volume;
 
-        //audio when paused goes pitches down
         if (PauseMenu.GamePaused)
-        {
-            audioSource.pitch *= .5f;
-        } else
-        {
-            audioSource.pitch *= 1f;
-        }
+            audioSource.pitch *= 0.5f;
+        else
+            audioSource.pitch = 1f;
 
-            //play sound
-            audioSource.Play();
+        audioSource.Play();
 
-        //get length
-        float clipLength = audioSource.clip.length;
+        // REMOVE this line for long-playing sounds like music:
+        Destroy(audioSource.gameObject, audioSource.clip.length);
 
-        //destroy clip after its done
-        Destroy(audioSource.gameObject, clipLength);
-
+        return audioSource; //  Return it!
     }
 
     public void PlayRandomSoundClip(AudioClip[] audioClip, Transform spawnTransform, float volume)

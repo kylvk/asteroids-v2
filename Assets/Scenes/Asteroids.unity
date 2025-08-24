@@ -2689,7 +2689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShopMusic: {fileID: 8300000, guid: 23039e91de72bb245b4980c189e1160e, type: 3}
   ShopEnvironment: {fileID: 1005924169}
-  ShopAsteroid: {fileID: 0}
+  ShopAsteroid: {fileID: 994722967105160691, guid: 8c4c238546ce7174d93a01db01562d21, type: 3}
   ShopExit: {fileID: 1835688551}
 --- !u!1 &946530944
 GameObject:

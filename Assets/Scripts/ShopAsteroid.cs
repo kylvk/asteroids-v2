@@ -4,10 +4,12 @@ public class ShopAsteroid : MonoBehaviour
 {
 
     [SerializeField] private AudioClip[] damageSoundClips;
-    [SerializeField] private AudioClip equipSoundClip;
 
     public ParticleSystem Explode;
     private Rigidbody2D rb;
+
+    public float speed = 50.0f;
+    public float maxLifetime = 30.0f;
 
     private void Awake()
     {
@@ -16,26 +18,25 @@ public class ShopAsteroid : MonoBehaviour
 
     public void SetTrajectory(Vector2 direction)
     {
-        rb.AddForce(direction, ForceMode2D.Impulse);
+        rb.AddForce(direction * this.speed);
+
+        Destroy(this.gameObject, this.maxLifetime);
     }
 
 
-private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (collision.gameObject.tag == "Player")
-        //{
-            
-        //   Destroy(gameObject);
-        //   ShopManager.instance.EnterShop();
-
-        //}
-       if (collision.gameObject.tag == "Bullet")
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+            ShopManager.instance.EnterShop();
+        }
+        else if (collision.gameObject.CompareTag("Bullet"))
         {
             SoundManager.instance.PlayRandomSoundClip(damageSoundClips, transform, 1f);
-
-            Destroy(gameObject);
             this.Explode.transform.position = this.transform.position;
             this.Explode.Play();
+            Destroy(gameObject);
         }
     }
 }

@@ -10,7 +10,9 @@ public class ShopManager : MonoBehaviour
     public GameObject ShopAsteroid;
     public GameObject ShopExit;
 
+
     public static ShopManager instance;
+    private AudioSource shopMusicSource;
 
     void Start()
     {
@@ -21,17 +23,22 @@ public class ShopManager : MonoBehaviour
     public void EnterShop()
     {
         Debug.Log("entering shop");
-        Destroy(ShopAsteroid);
 
         ShopEnvironment.SetActive(true);
-        GameManager.instance.Respawn(); //for position?
+        GameManager.instance.Respawn();
 
-        SoundManager.instance.PlaySoundClip(ShopMusic, transform, 1f);
-
+        shopMusicSource = SoundManager.instance.PlaySoundClip(ShopMusic, transform, 1f);
     }
     public void ExitShop()
     {
         ShopEnvironment.SetActive(false);
-        GameManager.instance.Respawn(); //for position?
+        GameManager.instance.Respawn();
+
+        if (shopMusicSource != null)
+        {
+            shopMusicSource.Stop();
+            Destroy(shopMusicSource.gameObject);
+            shopMusicSource = null;
+        }
     }
 }
