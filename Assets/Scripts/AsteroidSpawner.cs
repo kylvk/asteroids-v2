@@ -30,11 +30,26 @@ public class AsteroidSpawner : Singleton<AsteroidSpawner>
             float variance = Random.Range(-this.trajectoryVariance, this.trajectoryVariance);
             Quaternion rotation = Quaternion.AngleAxis(variance, Vector3.forward);
 
-            Asteroid asteroid = Instantiate(this.asteroidPrefab, spawnPoint, rotation);
-            asteroid.size = Random.Range(asteroid.minSize, asteroid.maxSize);
-            asteroid.SetTrajectory(rotation * -spawnDirection);
+            float rand = Random.value;
 
-            //Shop
+            if (rand < 0.1f) // 10% chance to spawn shop
+            {
+                ShopAsteroid shop = Instantiate(this.shopPrefab, spawnPoint, rotation, this.transform); // Parent to spawner
+                shop.SetTrajectory(rotation * -spawnDirection);
+            }
+            else
+            {
+                Asteroid asteroid = Instantiate(this.asteroidPrefab, spawnPoint, rotation, this.transform); // Parent to spawner
+                asteroid.size = Random.Range(asteroid.minSize, asteroid.maxSize);
+                asteroid.SetTrajectory(rotation * -spawnDirection);
+            }
+
+            // spawn powerup
+            if (canSpawnItems && Random.value < 0.05f && powerups.Length > 0)
+            {
+                int index = Random.Range(0, powerups.Length);
+                Instantiate(powerups[index], spawnPoint, Quaternion.identity, this.transform); // Parent to spawner
+            }
         }
     }
 }

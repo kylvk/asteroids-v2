@@ -223,7 +223,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Asteroid")
         {
-            Debug.Log("hit");
+            //Debug.Log("hit");
             rb2D.linearVelocity = Vector3.zero;
             rb2D.angularVelocity = 0f;
 
@@ -242,22 +242,11 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.tag == "ShopExit")
         {
+            ShopManager.instance.ExitShop();
             Debug.Log("Shop exited, have a nice day");
             rb2D.linearVelocity = Vector3.zero;
             rb2D.angularVelocity = 0f;
 
         }
     }
-
-
-
-//    old health garbage
-//    public void TakeDamage(int damage)
-//    {
-//        HealthCurrent -= damage;
-//        if (HealthCurrent <= 0)
-//        {
-//            Debug.Log("Dead");
-//        }
-//    }
 }

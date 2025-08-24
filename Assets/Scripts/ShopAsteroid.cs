@@ -7,11 +7,20 @@ public class ShopAsteroid : MonoBehaviour
     [SerializeField] private AudioClip equipSoundClip;
 
     public ParticleSystem Explode;
+    private Rigidbody2D rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    public void SetTrajectory(Vector2 direction)
+    {
+        rb.AddForce(direction, ForceMode2D.Impulse);
+    }
 
 
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
+private void OnTriggerEnter2D(Collider2D collision)
     {
         //if (collision.gameObject.tag == "Player")
         //{

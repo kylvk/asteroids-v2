@@ -8,6 +8,7 @@ public class ShopManager : MonoBehaviour
 
     public GameObject ShopEnvironment;
     public GameObject ShopAsteroid;
+    public GameObject ShopExit;
 
     public static ShopManager instance;
 
