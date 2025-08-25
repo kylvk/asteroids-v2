@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 public enum Upgrade
@@ -110,12 +111,19 @@ public class Player : MonoBehaviour
         {
             Reload();
         }
-        //shop debug
+        //shop debug cheats
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.T))
         {
             ShopManager.instance.EnterShop();
         }
+
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            GameManager.instance.score += 500;
+        }
+
+        //movement
 
         if (rb2D.position.x > screenBounds.max.x + 0.5f)
         {
