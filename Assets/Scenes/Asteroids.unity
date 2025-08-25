@@ -7082,7 +7082,7 @@ MonoBehaviour:
   Explode: {fileID: 361062520}
   flash: {fileID: 1340341448}
   ammoUI: {fileID: 0}
-  lives: 3
+  lives: 5
   score: 0
   highscore: 0
   GameOverPanel: {fileID: 1579125173}

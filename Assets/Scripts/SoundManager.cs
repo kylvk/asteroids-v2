@@ -20,17 +20,13 @@ public static SoundManager instance;
         audioSource.clip = audioClip;
         audioSource.volume = volume;
 
-        if (PauseMenu.GamePaused)
-            audioSource.pitch *= 0.5f;
-        else
-            audioSource.pitch = 1f;
+
 
         audioSource.Play();
 
-        // REMOVE this line for long-playing sounds like music:
         Destroy(audioSource.gameObject, audioSource.clip.length);
 
-        return audioSource; //  Return it!
+        return audioSource; 
     }
 
     public void PlayRandomSoundClip(AudioClip[] audioClip, Transform spawnTransform, float volume)
